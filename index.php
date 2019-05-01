@@ -19,6 +19,7 @@ $f3->set('DEBUG', 3);
 
 //Define Fat-Free array
 $f3->set('colors', array('pink', 'purple', 'magenta', 'lavender'));
+$f3->set('accessories', array('collar', 'leash', 'bowl', 'toy', 'food'));
 
 
 //Define a default route
@@ -70,6 +71,16 @@ $f3->route("GET|POST /order", function($f3) {
             $f3->set("errors['animal']", "Please enter an animal.");
         }
     }
+    if(isset($_POST['qty'])) {
+        $animal = $_POST['qty'];
+        if(validString($animal)) {
+            $_SESSION['qty'] = $animal;
+            $f3->reroute('/order2');
+        } else {
+            $f3->set("errors['qty']", "Please enter a quantity.");
+        }
+    }
+
     $view = new Template();
     echo $view->render('views/form1.html');
 });

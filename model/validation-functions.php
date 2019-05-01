@@ -18,3 +18,14 @@ function validColor($color) {
 function validString($string) {
     return $string != "" && ctype_alpha($string);
 }
+
+/* Validate a quantity
+
+ *@param a Number
+ * @return if quantity is valid and not empty
+ */
+function validQuanity($qty) {
+    return !empty($qty) && $qty >= 1 && is_numeric($qty);
+}
+
+//validate checkboxes

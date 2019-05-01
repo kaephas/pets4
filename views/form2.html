@@ -17,6 +17,18 @@
             </repeat>
         </select>
         <br>
+        <p>Select Condiments:
+            <check if="{{ @errors['accessories'] }}">
+                <span class="err">{{ @errors['accessories'] }}</span>
+            </check><br>
+            <repeat group="{{ @accessories }}" value="{{ @petStuff }}">
+                <label><input type="checkbox" name="access[]" value="{{ @petStuff }}"
+                    <check if="{{ !(empty(@accessories)) && in_array(@petStuff, @accessories) }}">
+                        checked
+                    </check>
+                    >{{ @petStuff }}</label><br>
+            </repeat>
+        </p>
         <input type="submit" value="Submit">
     </form>
 </body>

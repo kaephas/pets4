@@ -11,6 +11,12 @@
     </check>
     <label for="pet">Animal</label>
     <input type="text" name="pet" id="pet"><br>
+
+    <check if="{{isset(@errors['animal'])}}">
+        <p>{{@errors['qtyl']}}</p>
+    </check>
+    <label for="qty">Quantity</label>
+    <input type="text" id="qty" name="qty"><br>
     <input type="submit" value="Next">
     </form>
 </body>
