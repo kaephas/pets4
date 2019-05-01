@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Git Pet</title>
+</head>
+<body>
+<form action="#" method="post">
+    <check if="{{isset(@errors['animal'])}}">
+        <p>{{@errors['animal']}}</p>
+    </check>
+    <label for="pet">Animal</label>
+    <input type="text" name="pet" id="pet"><br>
+    <input type="submit" value="Next">
+    </form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name" : "kaephas-alicia/IT328/pets4",
+  "authors" : [
+    {
+      "name": "Kaephas",
+      "email":"kkain@mail.greenriver.edu"
+    },
+    {
+      "name": "Alicia",
+      "email": "abuehner@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+
+}
