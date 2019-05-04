@@ -30,56 +30,55 @@ $f3->route('GET /', function() {
     echo '<a href="order">Order a Pet</a>';
 });
 
-$f3->route('GET /@animal', function($f3, $params) {
-
-    $animal = $params['animal'];
-
-    switch($animal) {
-        case 'chicken':
-            echo 'Cluck!';
-            break;
-        case 'dog':
-            echo 'Woof!';
-            break;
-        case 'cat':
-            echo 'Meow!';
-            break;
-        case 'elephant':
-            echo 'Toot!';
-            break;
-        case 'fish':
-            echo 'Glub';
-            break;
-        case 'fox':
-            echo 'Rinadingding';
-            break;
-        default:
-            $f3->error(404);
-    }
-
-});
+//$f3->route('GET /@animal', function($f3, $params) {
+//
+//    $animal = $params['animal'];
+//
+//    switch($animal) {
+//        case 'chicken':
+//            echo 'Cluck!';
+//            break;
+//        case 'dog':
+//            echo 'Woof!';
+//            break;
+//        case 'cat':
+//            echo 'Meow!';
+//            break;
+//        case 'elephant':
+//            echo 'Toot!';
+//            break;
+//        case 'fish':
+//            echo 'Glub';
+//            break;
+//        case 'fox':
+//            echo 'Rinadingding';
+//            break;
+//        default:
+//            $f3->error(404);
+//    }
+//
+//});
 
 $f3->route("GET|POST /order", function($f3) {
     $_SESSION = array();
+    if(!empty($_POST)) {
+        $pet = $_POST['pet'];
+        $qty = $_POST['qty'];
 
-    if(isset($_POST['pet'])) {
-        $animal = $_POST['pet'];
-        if(validString($animal)) {
-            $_SESSION['animal'] = $animal;
-            $f3->reroute('/order2');
-        } else {
-            $f3->set("errors['animal']", "Please enter an animal.");
-        }
+        $f3->set('pet', $pet);
+        $f3->set('qty', $qty);
+
+//        if(validColor("pink")) {
+//            $f3->reroute('/order2');
+//        }
     }
-    if(isset($_POST['qty'])) {
-        $animal = $_POST['qty'];
-        if(validString($animal)) {
-            $_SESSION['qty'] = $animal;
+        if(validForm1()) {
+            $_SESSION['pet'] = $pet;
+            $_SESSION['qty'] = $qty;
+
             $f3->reroute('/order2');
-        } else {
-            $f3->set("errors['qty']", "Please enter a quantity.");
         }
-    }
+//    }
 
     $view = new Template();
     echo $view->render('views/form1.html');
@@ -87,16 +86,31 @@ $f3->route("GET|POST /order", function($f3) {
 
 $f3->route("GET|POST /order2", function($f3) {
 
-//    $_SESSION['pet'] = $_POST['pet'];
-    if(isset($_POST['color'])) {
+    if(!empty($_POST)) {
         $color = $_POST['color'];
-        if(validColor($color)) {
+        $access = $_POST['access'];
+
+
+        $f3->set('color', $color);
+        $f3->set('access', $access);
+
+        if(validForm2()) {
             $_SESSION['color'] = $color;
+            $_SESSION['access'] = $access;
+
             $f3->reroute('/results');
-        } else {
-            $f3->set("errors['color']", "Please choose a color");
         }
     }
+
+//    if(isset($_POST['color'])) {
+//        $color = $_POST['color'];
+//        if(validColor($color)) {
+//            $_SESSION['color'] = $color;
+//            $f3->reroute('/results');
+//        } else {
+//            $f3->set("errors['color']", "Please choose a color");
+//        }
+//    }
     $view = new Template();
     echo $view->render('views/form2.html');
 });

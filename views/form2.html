@@ -23,7 +23,7 @@
             </check><br>
             <repeat group="{{ @accessories }}" value="{{ @petStuff }}">
                 <label><input type="checkbox" name="access[]" value="{{ @petStuff }}"
-                    <check if="{{ !(empty(@accessories)) && in_array(@petStuff, @accessories) }}">
+                    <check if="{{ !(empty(@access)) && in_array(@petStuff, @access) }}">
                         checked
                     </check>
                     >{{ @petStuff }}</label><br>
