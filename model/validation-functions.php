@@ -25,8 +25,16 @@ function validQty($qty) {
 
 function validAcc($acc) {
     global $f3;
+    $isValid = true;
     // if it's empty, don't check for in array
-    return empty($acc) || in_array($acc, $f3->get('accessories'));
+    if(!empty($acc)) {
+        foreach($acc as $item) {
+            if(!in_array($item, $f3->get('accessories'))) {
+                $isValid = false;
+            }
+        }
+    }
+    return $isValid;
 }
 
 function testLoad() {
@@ -44,7 +52,7 @@ function validForm1() {
 
     if(!validString($f3->get('pet'))) {
         $isValid = false;
-        $f3->set('errors["qty"]', 'Please enter a pet.');
+        $f3->set('errors["pet"]', 'Please enter a pet.');
     }
 
     return $isValid;

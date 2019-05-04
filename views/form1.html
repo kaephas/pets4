@@ -6,18 +6,21 @@
 </head>
 <body>
 <form action="#" method="post">
-    <check if="{{isset(@errors['pet'])}}">
-        <p>{{@errors['pet']}}</p>
-    </check>
-    <label for="pet">Animal</label>
-    <input type="text" name="pet" id="pet" value="{{ @pet }}"><br>
 
-    <check if="{{isset(@errors['qty'])}}">
-        <p>{{@errors['qtyl']}}</p>
+    <label for="pet">Animal</label>
+    <input type="text" name="pet" id="pet" value="{{ @pet }}">
+    <check if="{{ @errors['pet'] }}">
+        {{ @errors['pet'] }}
     </check>
+    <br>
+
     <label for="qty">Quantity</label>
     <input type="text" id="qty" name="qty"
-            value="{{ @qty }}"><br>
+            value="{{ @qty }}">
+    <check if="{{ @errors['qty'] }}">
+        {{ @errors['qty'] }}
+    </check>
+    <br>
     <input type="submit" value="Next">
     </form>
 </body>

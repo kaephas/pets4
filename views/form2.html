@@ -6,21 +6,24 @@
 </head>
 <body>
     <form action="#" method="post">
-        <check if="{{isset(@errors['color'])}}">
-            <p>{{@errors['color']}}</p>
-        </check>
+
         <label for="color">Color</label>
         <select name="color" id="color">
             <option>--Select a color--</option>
             <repeat group="{{@colors}}" value="{{@colorOption}}">
-                <option>{{@colorOption}}</option>
+                <option
+                <check if="{{ @color == @colorOption }}">
+                    selected
+                </check>
+                >{{@colorOption}}</option>
             </repeat>
         </select>
+        <check if="{{ @errors['color'] }}">
+            <span class="err">{{ @errors['color'] }}</span>
+        </check>
         <br>
-        <p>Select Condiments:
-            <check if="{{ @errors['access'] }}">
-                <span class="err">{{ @errors['accessories'] }}</span>
-            </check><br>
+
+        <p>Select Accessories:<br>
             <repeat group="{{ @accessories }}" value="{{ @petStuff }}">
                 <label><input type="checkbox" name="access[]" value="{{ @petStuff }}"
                     <check if="{{ !(empty(@access)) && in_array(@petStuff, @access) }}">
@@ -29,6 +32,9 @@
                     >{{ @petStuff }}</label><br>
             </repeat>
         </p>
+        <check if="{{ @errors['access'] }}">
+            <span class="err">{{ @errors['accessories'] }}</span>
+        </check><br>
         <input type="submit" value="Submit">
     </form>
 </body>
