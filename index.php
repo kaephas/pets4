@@ -68,17 +68,17 @@ $f3->route("GET|POST /order", function($f3) {
         $f3->set('pet', $pet);
         $f3->set('qty', $qty);
 
-//        if(validColor("pink")) {
-//            $f3->reroute('/order2');
-//        }
-    }
         if(validForm1()) {
             $_SESSION['pet'] = $pet;
             $_SESSION['qty'] = $qty;
 
             $f3->reroute('/order2');
         }
-//    }
+
+//        if(validColor("pink")) {
+//            $f3->reroute('/order2');
+//        }
+    }
 
     $view = new Template();
     echo $view->render('views/form1.html');
